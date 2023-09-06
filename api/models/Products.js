@@ -1,4 +1,5 @@
-const {Sequelize, Model} = require('sequelize')
+const { Sequelize, Model } = require('sequelize')
+const db = require('../config/db')
 
 class Product extends Model { }
 
