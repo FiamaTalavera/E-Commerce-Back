@@ -34,3 +34,4 @@ router.post("/logout", (req, res) => {
 
   res.sendStatus(204);
 });
+
