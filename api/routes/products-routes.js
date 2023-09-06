@@ -37,3 +37,11 @@ router.get("/products/:id", (req, res, next) => {
     })
     .catch(next);
 });
+
+router.get("/products", (req, res, next) => {
+  Product.findAll()
+    .then((products) => {
+      res.status(200).json(products);
+    })
+    .catch(next);
+});
