@@ -2,6 +2,7 @@ const { DataTypes, Model } = require("sequielize");
 const bcrypt = require("bcrypt");
 const sequelize = require("../config/db");
 
+
 class User extends Model {
   hash(password, salt) {
     return bcrypt.hash(password, salt);
