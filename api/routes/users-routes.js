@@ -2,6 +2,15 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/Users");
 const { generateToken } = require("../config/tokens");
+const { validateUser } = require("../middlewares/auth");
+
+router.post("/register", (req, res, next) => {
+  const { email, last_name, name, password, adress } = req.body;
+  console.log(req.body);
+  User.create({ email, last_name, name, password, adress }).then((user) =>
+    res.status(201).send(user)
+  );
+});
 
 router.post("/login", (req, res, next) => {
   const { email, password } = req.body;
@@ -34,4 +43,3 @@ router.post("/logout", (req, res) => {
 
   res.sendStatus(204).end();
 });
-

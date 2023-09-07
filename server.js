@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const db = require("./api/config/db");
-const models = require("./api/models")
+const models = require("./api/models/index")
 const routes = require("./api/routes")
 
 app.use(express.json());
