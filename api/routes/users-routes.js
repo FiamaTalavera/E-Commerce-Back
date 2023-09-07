@@ -32,6 +32,6 @@ router.post("/login", (req, res, next) => {
 router.post("/logout", (req, res) => {
   res.clearCookie("token"); // borro la cookie de token
 
-  res.sendStatus(204);
+  res.sendStatus(204).end();
 });
 
