@@ -5,9 +5,9 @@ const { generateToken } = require("../config/tokens");
 const { validateUser } = require("../middlewares/auth");
 
 router.post("/register", (req, res, next) => {
-  const { email, lastname, name, password } = req.body;
+  const { email, last_name, name, password, adress } = req.body;
   console.log(req.body);
-  User.create({ email, lastname, name, password }).then((user) =>
+  User.create({ email, last_name, name, password, adress }).then((user) =>
     res.status(201).send(user)
   );
 });
