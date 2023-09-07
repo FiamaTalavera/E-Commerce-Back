@@ -19,16 +19,17 @@ router.post("/login", (req, res, next) => {
       email,
     },
   }).then((user) => {
-    if (!user) return res.send(401).json({ message: "User no encontrado" });
+    if (!user) return res.status(401).json({ message: "User no encontrado" });
 
     user.validatePassword(password).then((isValid) => {
       if (!isValid)
-        return res.send(401).json({ message: "Contraseña no validada" });
+        return res.status(401).json({ message: "Contraseña no validada" });
       else {
         const payload = {
           email: user.email,
           name: user.name,
           last_name: user.last_name,
+          adress: user.adress,
         };
         const token = generateToken(payload);
         res.cookie("token", token);
@@ -36,6 +37,10 @@ router.post("/login", (req, res, next) => {
       }
     });
   });
+});
+
+router.get("/me", validateUser, (req, res) => {
+  res.send(req.user);
 });
 
 router.post("/logout", (req, res) => {
