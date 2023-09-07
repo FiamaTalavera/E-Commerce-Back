@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Product = require("../models/Products");
 
-router.put("/products/:id", (req, res, next) => {
+router.put("/:id", (req, res, next) => {
   const { id } = req.params;
   const { name, description, price, imageURL, stock } = req.body;
   Product.update(
@@ -20,7 +20,7 @@ router.put("/products/:id", (req, res, next) => {
     .catch(next);
 });
 
-router.get("/products/:id", (req, res, next) => {
+router.get("/:id", (req, res, next) => {
   const { id } = req.params;
 
   Product.findOne({
@@ -38,10 +38,26 @@ router.get("/products/:id", (req, res, next) => {
     .catch(next);
 });
 
-router.get("/products", (req, res, next) => {
+router.get("/", (req, res, next) => {
   Product.findAll()
     .then((products) => {
       res.status(200).json(products);
     })
     .catch(next);
+
 });
+
+router.post("/products", (req, res, next) => {
+  const { name, description, price, imageURL, stock } = req.body;
+  Product.create({
+    name,
+    description,
+    price,
+    imageURL,
+    stock,
+  })
+    .then((newProduct) => res.status(201).send(newProduct))
+    .catch(next);
+});
+
+module.exports = router

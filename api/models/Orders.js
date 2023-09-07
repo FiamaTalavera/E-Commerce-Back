@@ -6,6 +6,12 @@ class Order extends Model {}
 
 Order.init(
   {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+    },
     date: {
       type: DataTypes.DATE,
       allowNull: false,
