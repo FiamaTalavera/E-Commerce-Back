@@ -39,7 +39,7 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    adress: {
+    address: {
       type: DataTypes.STRING,
       allowNull: false,
     },

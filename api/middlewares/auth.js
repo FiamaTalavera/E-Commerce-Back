@@ -7,7 +7,10 @@ function validateUser(req, res, next) {
     }
 
     const { payload } = validateToken(token);
-    req.user = payload;
+    req.user = {
+        userId: payload.userId,
+        ...payload
+    };
     if (payload) {
         return next();
     } else {
