@@ -5,9 +5,9 @@ const { generateToken } = require("../config/tokens");
 const { validateUser } = require("../middlewares/auth");
 
 router.post("/register", (req, res, next) => {
-  const { email, last_name, name, password, adress } = req.body;
+  const { email, last_name, name, password, address } = req.body;
   console.log(req.body);
-  User.create({ email, last_name, name, password, adress }).then((user) =>
+  User.create({ email, last_name, name, password, address }).then((user) =>
     res.status(201).send(user)
   );
 });
@@ -26,10 +26,11 @@ router.post("/login", (req, res, next) => {
         return res.status(401).json({ message: "Contraseña no validada" });
       else {
         const payload = {
+          userId: user.id,
           email: user.email,
           name: user.name,
           last_name: user.last_name,
-          adress: user.adress,
+          address: user.address,
         };
         const token = generateToken(payload);
         res.cookie("token", token);
