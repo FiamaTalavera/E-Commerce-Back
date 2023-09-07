@@ -1,6 +1,6 @@
-import { validateToken } from '../config/tokens.js';
+const { validateToken } = require('../config/tokens.js')
 
-export function validateUser(req, res, next) {
+function validateUser(req, res, next) {
     const token = req.cookies.token;
     if (!token) {
         return res.sendStatus(401);
@@ -14,3 +14,5 @@ export function validateUser(req, res, next) {
         return res.sendStatus(401);
     }
 }
+
+module.exports = validateUser
