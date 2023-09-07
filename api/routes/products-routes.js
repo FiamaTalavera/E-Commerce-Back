@@ -44,4 +44,20 @@ router.get("/products", (req, res, next) => {
       res.status(200).json(products);
     })
     .catch(next);
+
 });
+
+router.post("/products", (req, res, next) => {
+  const { name, description, price, imageURL, stock } = req.body;
+  Product.create({
+    name,
+    description,
+    price,
+    imageURL,
+    stock,
+  })
+    .then((newProduct) => res.status(201).send(newProduct))
+    .catch(next);
+});
+
+module.exports = router
