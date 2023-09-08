@@ -6,7 +6,7 @@ const { validateUser } = require("../middlewares/auth");
 
 router.post("/register", (req, res, next) => {
   const { email, last_name, name, password, address } = req.body;
-  console.log(req.body);
+  // console.log(req.body);
   User.create({ email, last_name, name, password, address }).then((user) =>
     res.status(201).send(user)
   );
@@ -48,6 +48,22 @@ router.post("/logout", (req, res) => {
   res.clearCookie("token"); // borro la cookie de token
 
   res.sendStatus(204).end();
+});
+
+router.put("/profile", validateUser, (req, res, next) => {
+  const { email, last_name, name, address } = req.body;
+  // console.log("req.body /profile ---> ", req.body);
+  const userId = req.user.userId;
+  // console.log("req.user /profile --->", req.user);
+
+  User.update(
+    { email, last_name, name, address },
+    { where: { id: userId }, returning: true }
+  )
+    .then(([numChanges, updatedUser]) => {
+      res.status(200).send(updatedUser[0]);
+    })
+    .catch(next);
 });
 
 module.exports = router;
