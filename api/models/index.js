@@ -5,7 +5,7 @@ const Order = require("./Orders")
 const Review = require("./Reviews")
 
 User.hasMany(Order)
-Review.belongsTo(User) /*consultar por alias*/
+Review.belongsTo(User)
 Products.belongsToMany(User, {through: Order})
 User.belongsToMany(Products, {through: Order})
 Category.hasMany(Products)
