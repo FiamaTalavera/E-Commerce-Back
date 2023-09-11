@@ -3,6 +3,8 @@ const router = express.Router();
 const Product = require("../models/Products");
 const Order = require("../models/Orders");
 const { validateUser } = require("../middlewares/auth");
+const { Op } = require("sequelize");
+
 
 router.put("/:id", (req, res, next) => {
   const { id } = req.params;
@@ -122,6 +124,58 @@ router.put("/modify/:id", (req, res, next) => {
       }
 
       res.status(200).json(updatedProduct);
+});
+
+router.post("/addToCart/:productId", validateUser, (req, res, next) => {
+  const { productId } = req.params;
+  const { userId } = req.user;
+  const { quantity } = req.body;
+
+  if (!userId)
+    return res.status(401).json({ message: "Usuario no encontrado" });
+
+  let existingOrder;
+
+  Order.findOne({
+    where: {
+      userId,
+      productId,
+    },
+  })
+    .then((order) => {
+      if (order) {
+        existingOrder = order;
+        existingOrder.quantity += quantity;
+        return existingOrder.save();
+      } else {
+        return Order.create({
+          userId,
+          productId,
+          quantity,
+        });
+      }
+    })
+    .then((orderProduct) => {
+      res.status(existingOrder ? 200 : 201).send(orderProduct);
+    })
+    .catch(next);
+});
+
+router.get("/search/:productName", (req, res, next) => {
+  const { productName } = req.params;
+  
+  Product.findAll({
+    where: {
+      name: {
+        [Op.iLike]: `%${productName}%`,
+      },
+    },
+  })
+    .then((products) => {
+      if (products.length === 0)
+        return res.status(404).json({ message: "Producto no encontrado" });
+
+      res.status(200).send(products);
     })
     .catch(next);
 });
