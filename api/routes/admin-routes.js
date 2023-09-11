@@ -34,4 +34,21 @@ router.post("/categories", (req, res, next) => {
     .catch(next);
 });
 
+router.delete("/categories/:categoryId", (req, res, next) => {
+  const { categoryId } = req.params;
+
+  Category.findByPk(categoryId)
+    .then((category) => {
+      if (!category)
+        return res.status(404).json({ message: "Categoria no encontrada" });
+      category
+        .destroy()
+        .then(() => {
+          res.status(200).json({ message: "Categoria eliminada" });
+        })
+        .catch(next);
+    })
+    .catch(next);
+});
+
 module.exports = router;
