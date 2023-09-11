@@ -99,8 +99,7 @@ router.post("/addToCart/:productId", validateUser, (req, res, next) => {
 
 router.get("/search/:productName", (req, res, next) => {
   const { productName } = req.params;
-  //   console.log("productName ---> ", productName);
-
+  
   Product.findAll({
     where: {
       name: {
@@ -109,7 +108,9 @@ router.get("/search/:productName", (req, res, next) => {
     },
   })
     .then((products) => {
-      //   console.log("Search products ---> ", products);
+      if (products.length === 0)
+        return res.status(404).json({ message: "Producto no encontrado" });
+
       res.status(200).send(products);
     })
     .catch(next);
