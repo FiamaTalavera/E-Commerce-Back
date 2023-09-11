@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const Order = require('../models/Orders');
-const { validateUser } = require('../middlewares/auth');
 const Product = require('../models/Products');
 
 router.delete("/remove/:orderId/:productId", (req, res, next) => {
@@ -20,7 +19,7 @@ router.delete("/remove/:orderId/:productId", (req, res, next) => {
           }
 
           order
-            .removeProduct(product)
+            .destroy(product)
             .then(() => {
               res.status(200).json({ message: "Producto removido" });
             })
