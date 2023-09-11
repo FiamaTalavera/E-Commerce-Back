@@ -63,4 +63,24 @@ router.delete('/remove/:orderId/:productId', (req, res, next) => {
         .catch(next);
 });
 
+router.put('/updateQuantity/:orderId', (req, res, next) => {
+    const { orderId } = req.params;
+    const { quantity } = req.body;
+
+    Order.findByPk(orderId)
+        .then((order) => {
+            if (!order) {
+                return res.status(404).json({ message: 'Orden no encontrada' });
+            }
+
+            order.quantity = quantity;
+
+            return order.save();
+        })
+        .then((updatedOrder) => {
+            res.status(200).json({ message: 'Cantidad actualizada', updatedOrder });
+        })
+        .catch(next);
+});
+
 module.exports = router;
