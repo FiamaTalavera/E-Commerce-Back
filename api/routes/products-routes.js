@@ -124,7 +124,8 @@ router.put("/modify/:id", (req, res, next) => {
       }
 
       res.status(200).json(updatedProduct);
-});
+    });
+})
 
 router.post("/addToCart/:productId", validateUser, (req, res, next) => {
   const { productId } = req.params;
