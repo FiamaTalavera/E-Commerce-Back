@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require("../models/Users");
 const { generateToken } = require("../config/tokens");
 const { validateUser } = require("../middlewares/auth");
+const Orders = require("../models/Orders");
 
 router.post("/register", (req, res, next) => {
   const { email, last_name, name, password, address, snippet } = req.body;
@@ -63,6 +64,20 @@ router.put("/profile", validateUser, (req, res, next) => {
   )
     .then(([numChanges, updatedUser]) => {
       res.status(200).send(updatedUser[0]);
+    })
+    .catch(next);
+});
+
+router.get("/userId/history", (req, res, next) => {
+  const { userId } = req.params;
+
+  Orders.findAll({
+    where: {
+      userId,
+    },
+  })
+    .then((orders) => {
+      res.status(200).send(orders);
     })
     .catch(next);
 });
