@@ -15,12 +15,18 @@ Order.init(
     date: {
       type: DataTypes.DATE,
       allowNull: false,
+      defaultValue: new Date()
     },
     state: {
       type: DataTypes.STRING,
       allowNull: false,
       defaultValue: "in_cart",
     },
+    quantity: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 1
+    }
   },
   {
     sequelize,

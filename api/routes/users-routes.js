@@ -5,10 +5,10 @@ const { generateToken } = require("../config/tokens");
 const { validateUser } = require("../middlewares/auth");
 
 router.post("/register", (req, res, next) => {
-  const { email, last_name, name, password, adress } = req.body;
-  console.log(req.body);
-  User.create({ email, last_name, name, password, adress }).then((user) =>
-    res.status(201).send(user)
+  const { email, last_name, name, password, address, snippet } = req.body;
+  // console.log(req.body);
+  User.create({ email, last_name, name, password, address, snippet }).then(
+    (user) => res.status(201).send(user)
   );
 });
 
@@ -26,10 +26,12 @@ router.post("/login", (req, res, next) => {
         return res.status(401).json({ message: "Contraseña no validada" });
       else {
         const payload = {
+          userId: user.id,
           email: user.email,
           name: user.name,
           last_name: user.last_name,
-          adress: user.adress,
+          address: user.address,
+          is_admin: user.is_admin,
         };
         const token = generateToken(payload);
         res.cookie("token", token);
@@ -47,6 +49,22 @@ router.post("/logout", (req, res) => {
   res.clearCookie("token"); // borro la cookie de token
 
   res.sendStatus(204).end();
+});
+
+router.put("/profile", validateUser, (req, res, next) => {
+  const { email, last_name, name, address } = req.body;
+  // console.log("req.body /profile ---> ", req.body);
+  const userId = req.user.userId;
+  // console.log("req.user /profile --->", req.user);
+
+  User.update(
+    { email, last_name, name, address },
+    { where: { id: userId }, returning: true }
+  )
+    .then(([numChanges, updatedUser]) => {
+      res.status(200).send(updatedUser[0]);
+    })
+    .catch(next);
 });
 
 module.exports = router;

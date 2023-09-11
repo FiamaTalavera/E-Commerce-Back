@@ -1,7 +1,8 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const Order = require("../models/Orders");
-const Product = require("../models/Products");
+const Order = require('../models/Orders');
+const { validateUser } = require('../middlewares/auth');
+const Product = require('../models/Products');
 
 router.delete("/remove/:orderId/:productId", (req, res, next) => {
   const { orderId, productId } = req.params;
@@ -21,7 +22,7 @@ router.delete("/remove/:orderId/:productId", (req, res, next) => {
           order
             .removeProduct(product)
             .then(() => {
-              res.status(200).json({ message: "Product removido" });
+              res.status(200).json({ message: "Producto removido" });
             })
             .catch(next);
         })
