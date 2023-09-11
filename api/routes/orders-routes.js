@@ -3,7 +3,6 @@ const router = express.Router();
 const Order = require("../models/Orders");
 const Product = require("../models/Products");
 
-
 router.delete("/remove/:orderId/:productId", (req, res, next) => {
   const { orderId, productId } = req.params;
 
