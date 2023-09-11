@@ -7,8 +7,8 @@ const { validateUser } = require("../middlewares/auth");
 router.post("/register", (req, res, next) => {
   const { email, last_name, name, password, address, snippet } = req.body;
   // console.log(req.body);
-  User.create({ email, last_name, name, password, address, snippet }).then((user) =>
-    res.status(201).send(user)
+  User.create({ email, last_name, name, password, address, snippet }).then(
+    (user) => res.status(201).send(user)
   );
 });
 
@@ -31,6 +31,7 @@ router.post("/login", (req, res, next) => {
           name: user.name,
           last_name: user.last_name,
           address: user.address,
+          is_admin: user.is_admin,
         };
         const token = generateToken(payload);
         res.cookie("token", token);
