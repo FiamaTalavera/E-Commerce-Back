@@ -51,4 +51,17 @@ router.delete("/categories/:categoryId", (req, res, next) => {
     .catch(next);
 });
 
+router.post('/addProduct', (req, res, next) => {
+    const { name, description, price, imageURL, stock } = req.body;
+    Product.create({
+        name,
+        description,
+        price,
+        imageURL,
+        stock,
+    })
+        .then((newProduct) => res.status(201).send(newProduct))
+        .catch(next);
+});
+
 module.exports = router;
