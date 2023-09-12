@@ -79,4 +79,15 @@ router.put('/categories/:categoryId', (req, res, next) => {
   .catch(next)
 });
 
+router.get("/categories", (req, res, next) => {
+
+  Category.findAll()
+    .then((categories) => {
+      res
+        .status(200)
+        .send(categories);
+    })
+    .catch(next);
+});
+
 module.exports = router;
