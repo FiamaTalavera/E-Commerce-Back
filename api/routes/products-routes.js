@@ -114,26 +114,15 @@ router.put("/modify/:id", (req, res, next) => {
       where: { id },
       returning: true,
     }
-  ).then(([numChanges, [updatedProduct]]) => {
-    if (numChanges === 0) {
-      return res.status(404).json({ message: "Product Not Found" });
-    }
+  )
+    .then(([numChanges, [updatedProduct]]) => {
+      if (numChanges === 0) {
+        return res.status(404).json({ message: "Product Not Found" });
+      }
 
-    res.status(200).json(updatedProduct);
-  });
-});
-
-router.post("/addToCart/:productId", validateUser, (req, res, next) => {
-  const { productId } = req.params;
-  const { userId } = req.user;
-  const { quantity } = req.body;
-
-  if (!userId)
-    return res.status(401).json({ message: "Usuario no encontrado" });
-
-  let existingOrder;
-
-  res.status(200).json(updatedProduct);
+      res.status(200).json(updatedProduct);
+    })
+    .catch(next);
 });
 
 router.get("/search/:productName", (req, res, next) => {
