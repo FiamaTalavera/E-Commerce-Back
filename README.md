@@ -38,18 +38,20 @@ Para comenzar a utilizar el proyecto debe seguir estos pasos:
 
 **Clonar los Repositorios:**
 1. Clone el repositorio del front-end ejecutando el siguiente comando en la terminal:
-git clone https://github.com/TuUsuario/CafeEnElHorno-Front.git
+git clone https://github.com/FiamaTalavera/E-Commerce-Front.git
 
 2. Clone el repositorio del back-end ejecutando el siguiente comando en la terminal:
-git clone https://github.com/TuUsuario/CafeEnElHorno-Back.git
+git clone https://github.com/FiamaTalavera/E-Commerce-Back.git
 
 
 **Instalar Dependencias:**
+
 3. En ambos directorios, ejecute el siguiente comando para instalar las dependencias:
 npm install
 
 
 **Iniciar la Aplicación:**
+
 4. Inicia los directorios ejecutando el siguiente comando:
 npm start
 
