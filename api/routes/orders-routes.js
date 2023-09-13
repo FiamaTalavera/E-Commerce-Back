@@ -6,6 +6,20 @@ const Product = require('../models/Products');
 const { generateOrderNumber } = require('../utils/functions');
 const History = require('../models/History');
 
+const nodemailer = require('nodemailer');
+
+// config nodemailer / email
+
+const transporter = nodemailer.createTransport({
+    host: "smtp-mail.outlook.com",
+    port: 587, //587
+    secure: false,
+    auth: {
+        user: "en.el.horno@outlook.com.ar",
+        pass: "Enelhorno.p5"
+    }
+})
+
 router.get('/', validateUser, (req, res, next) => {
     // para sacar las ordenes del usuario logueado
     const { userId } = req.user;
@@ -86,6 +100,7 @@ router.put('/updateQuantity/:orderId', (req, res, next) => {
 
 router.post('/checkout', validateUser, (req, res, next) => {
     const { userId } = req.user;
+    console.log("req.user ---> ", req.user.email)
     const orderNumber = generateOrderNumber();
 
     Order.findAll({ where: { userId } }).then((order) => {
@@ -97,6 +112,23 @@ router.post('/checkout', validateUser, (req, res, next) => {
                 quantity: item.quantity,
             });
         });
+
+        const mailOptions = {
+            from: "en.el.horno@outlook.com.ar",
+            to: req.user.email,
+            subject: "Confirmación de compra",
+            text: `¡Tu compra ha sido completada con éxito! Numero de orden #${orderNumber}`
+        }
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if(error){
+                console.error("Error en el correo de confirmacion", error)
+            } else {
+                console.log("Correo confirmacion enviado", info.response)
+            }
+        })
+
+
         Order.destroy({
             where: {
                 userId,
