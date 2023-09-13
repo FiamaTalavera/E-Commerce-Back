@@ -15,7 +15,7 @@ Order.init(
     date: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: new Date()
+      defaultValue: new Date(),
     },
     state: {
       type: DataTypes.STRING,
@@ -25,8 +25,11 @@ Order.init(
     quantity: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: 1
-    }
+      defaultValue: 1,
+    },
+    order_number: {
+      type: DataTypes.INTEGER,
+    },
   },
   {
     sequelize,
