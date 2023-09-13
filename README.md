@@ -32,7 +32,16 @@ Este trabajo ofrece una serie de funcionalidades tanto para los usuarios como pa
 - Gestionar usuarios y permisos.
 - Supervisar y actualizar el estado de pedidos e inventario.
 
-## 3. Comenzar
+## 3. Tecnologías
+
+- Express
+- NodeJS
+- Sequelize
+- React
+- Context
+- Estilos con Material UI
+
+## 4. Comenzar
 
 Para comenzar a utilizar el proyecto debe seguir estos pasos:
 
@@ -60,14 +69,14 @@ git clone https://github.com/FiamaTalavera/E-Commerce-Back.git
 ```npm run seed```
 
 
-## 4. Ayuda
+## 5. Ayuda
 
 Si necesitas ayuda con el proyecto "En el Horno," podes ponerte en contacto con nosotros a través del correo electrónico: [en.el.horno.cafe@gmail.com](mailto:en.el.horno.cafe@gmail.com). Estaremos encantados de responder a tus preguntas y proporcionarte la asistencia necesaria.
 
-## 5. Contribución
+## 6. Contribución
 
-Este proyecto es un esfuerzo colaborativo de Agustín Torroja, Isidro Molina, Fiama Talavera Viccini y Santiago Zanetti. Si deseas contribuir a ste proyecto, podes realizar propuestas de mejora, informar sobre problemas o enviar solicitudes de extracción (pull requests) en los repositorios correspondientes.
+Este proyecto es un esfuerzo colaborativo de [Agustín Torroja](https://github.com/agtorroja), [Isidro Molina](https://github.com/Isidro-Molina), [Fiama Talavera Viccini](https://github.com/FiamaTalavera) y [Santiago Zanetti](https://github.com/santiagozanetti). Si deseas contribuir a ste proyecto, podes realizar propuestas de mejora, informar sobre problemas o enviar solicitudes de extracción (pull requests) en los repositorios correspondientes.
 
-## 6. Contacto
+## 7. Contacto
 
 Si deseas obtener más información sobre el proyecto o tenes alguna consulta adicional, no dudes en ponerte en contacto con nosotros a través del correo electrónico: [en.el.horno.cafe@gmail.com](mailto:en.el.horno.cafe@gmail.com). ¡Esperamos que disfrutes utilizando "En el Horno" y que te sea útil!
