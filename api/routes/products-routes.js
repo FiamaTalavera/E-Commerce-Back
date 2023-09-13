@@ -49,7 +49,7 @@ router.get("/", (req, res, next) => {
 });
 
 router.post("/", (req, res, next) => {
-  const { name, description, price, imageURL, stock } = req.body;
+  const { name, description, price, imageURL, stock, categoryId } = req.body;
   Product.create({
     name,
     description,
@@ -57,7 +57,10 @@ router.post("/", (req, res, next) => {
     imageURL,
     stock,
   })
-    .then((newProduct) => res.status(201).send(newProduct))
+    .then((newProduct) => {
+      // console.log("newProduct --> ", newProduct)
+      newProduct.setCategory(categoryId)
+      res.status(201).send(newProduct)})
     .catch(next);
 });
 

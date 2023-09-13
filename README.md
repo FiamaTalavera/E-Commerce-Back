@@ -71,7 +71,7 @@ git clone https://github.com/FiamaTalavera/E-Commerce-Back.git
 
 ## 5. Ayuda
 
-Si necesitas ayuda con el proyecto "En el Horno," podes ponerte en contacto con nosotros a través del correo electrónico: [en.el.horno.cafe@gmail.com](mailto:en.el.horno.cafe@gmail.com). Estaremos encantados de responder a tus preguntas y proporcionarte la asistencia necesaria.
+Si necesitas ayuda con el proyecto "En el Horno," podes ponerte en contacto con nosotros a través del correo electrónico: [en.el.horno@outlook.com.ar](mailto:en.el.horno@outlook.com.ar). Estaremos encantados de responder a tus preguntas y proporcionarte la asistencia necesaria.
 
 ## 6. Contribución
 
@@ -79,4 +79,4 @@ Este proyecto es un esfuerzo colaborativo de [Agustín Torroja](https://github.c
 
 ## 7. Contacto
 
-Si deseas obtener más información sobre el proyecto o tenes alguna consulta adicional, no dudes en ponerte en contacto con nosotros a través del correo electrónico: [en.el.horno.cafe@gmail.com](mailto:en.el.horno.cafe@gmail.com). ¡Esperamos que disfrutes utilizando "En el Horno" y que te sea útil!
+Si deseas obtener más información sobre el proyecto o tenes alguna consulta adicional, no dudes en ponerte en contacto con nosotros a través del correo electrónico: [en.el.horno@outlook.com.ar](mailto:en.el.horno@outlook.com.ar). ¡Esperamos que disfrutes utilizando "En el Horno" y que te sea útil!
