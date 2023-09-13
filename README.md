@@ -1,6 +1,6 @@
 # README - Proyecto: En el Horno
 
-Este README proporciona información esencial sobre el proyecto "En el Horno", una plataforma de comercio electrónico especializada en alimentos y bebidas del rubro gastronómico estilo cafetería. Este proyecto fue desarrollado como parte de un trabajo práctico para Plataforma 5. Los desarrolladores de este proyecto son Agustín Torroja, Isidro Molina, Fiama Talavera Viccini y Santiago Zanetti.
+Este README proporciona información esencial sobre el proyecto E-Commerce "En el Horno", desarrollado como parte de un trabajo práctico para Plataforma 5.
 
 ## Contenido
 
@@ -13,7 +13,7 @@ Este README proporciona información esencial sobre el proyecto "En el Horno", u
 
 ## 1. Introducción
 
-El proyecto "En el Horno" es una plataforma de comercio electrónico diseñada específicamente para el rubro gastronómico, con un enfoque en alimentos y bebidas al estilo cafetería. Este sistema se compone de dos repositorios: uno para el front-end y otro para el back-end. El front-end proporciona la interfaz de usuario, mientras que el back-end maneja las operaciones relacionadas con la gestión de productos, usuarios y pedidos.
+El proyecto "En el Horno" es una plataforma de comercio electrónico diseñada específicamente para el rubro gastronómico, con un enfoque en alimentos y bebidas al estilo cafetería. Este sistema se compone de dos repositorios: uno para el [front-end](https://github.com/FiamaTalavera/E-Commerce-Front) y otro para el [back-end](https://github.com/FiamaTalavera/E-Commerce-Back). El front-end proporciona la interfaz de usuario, mientras que el back-end maneja las operaciones relacionadas con la gestión de productos, usuarios y pedidos.
 
 ## 2. Funcionalidades
 
@@ -37,6 +37,7 @@ Este trabajo ofrece una serie de funcionalidades tanto para los usuarios como pa
 Para comenzar a utilizar el proyecto debe seguir estos pasos:
 
 **Clonar los Repositorios:**
+
 1. Clone el repositorio del front-end ejecutando el siguiente comando en la terminal:
 git clone https://github.com/FiamaTalavera/E-Commerce-Front.git
 
@@ -47,26 +48,26 @@ git clone https://github.com/FiamaTalavera/E-Commerce-Back.git
 **Instalar Dependencias:**
 
 3. En ambos directorios, ejecute el siguiente comando para instalar las dependencias:
-npm install
+```npm install```
 
 
 **Iniciar la Aplicación:**
 
 4. Inicia los directorios ejecutando el siguiente comando:
-npm start
+```npm start```
 
 5. Iniciar la base de datos ejecutando el siguiente comando:
-npm run seed
+```npm run seed```
 
 
 ## 4. Ayuda
 
-Si necesitas ayuda con el proyecto "Café en el Horno," puedes ponerte en contacto con nosotros a través del correo electrónico: [en.el.horno.cafe@gmail.com](mailto:en.el.horno.cafe@gmail.com). Estaremos encantados de responder a tus preguntas y proporcionarte la asistencia necesaria.
+Si necesitas ayuda con el proyecto "En el Horno," podes ponerte en contacto con nosotros a través del correo electrónico: [en.el.horno.cafe@gmail.com](mailto:en.el.horno.cafe@gmail.com). Estaremos encantados de responder a tus preguntas y proporcionarte la asistencia necesaria.
 
 ## 5. Contribución
 
-Este proyecto es un esfuerzo colaborativo de Agustín Torroja, Isidro Molina, Fiama Talavera Viccini y Santiago Zanetti. Si deseas contribuir al desarrollo de "Café en el Horno," puedes realizar propuestas de mejora, informar sobre problemas o enviar solicitudes de extracción (pull requests) en los repositorios correspondientes.
+Este proyecto es un esfuerzo colaborativo de Agustín Torroja, Isidro Molina, Fiama Talavera Viccini y Santiago Zanetti. Si deseas contribuir a ste proyecto, podes realizar propuestas de mejora, informar sobre problemas o enviar solicitudes de extracción (pull requests) en los repositorios correspondientes.
 
 ## 6. Contacto
 
-Si deseas obtener más información sobre el proyecto o tienes alguna consulta adicional, no dudes en ponerte en contacto con nosotros a través del correo electrónico: [en.el.horno.cafe@gmail.com](mailto:en.el.horno.cafe@gmail.com). ¡Esperamos que disfrutes utilizando "Café en el Horno" y que sea útil para tus necesidades gastronómicas!
+Si deseas obtener más información sobre el proyecto o tenes alguna consulta adicional, no dudes en ponerte en contacto con nosotros a través del correo electrónico: [en.el.horno.cafe@gmail.com](mailto:en.el.horno.cafe@gmail.com). ¡Esperamos que disfrutes utilizando "En el Horno" y que te sea útil!
