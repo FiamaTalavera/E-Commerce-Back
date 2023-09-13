@@ -139,7 +139,6 @@ router.post("/addToCart/:productId", validateUser, (req, res, next) => {
 
     res.status(200).json(updatedProduct);
   });
-});
 
 router.get("/search/:productName", (req, res, next) => {
   const { productName } = req.params;
