@@ -5,6 +5,7 @@ const { generateToken } = require("../config/tokens");
 const { validateUser } = require("../middlewares/auth");
 const Orders = require("../models/Orders");
 const History = require("../models/History");
+const Products = require("../models/Products");
 
 router.post("/register", (req, res, next) => {
   const { email, last_name, name, password, address, snippet } = req.body;
@@ -69,21 +70,37 @@ router.put("/profile", validateUser, (req, res, next) => {
     .catch(next);
 });
 
-router.get("/userId/history", (req, res, next) => {
-  const userId = req.user.id;
-
+router.get("/history", validateUser, (req, res, next) => {
+  const { userId } = req.user;
   History.findAll({
-    where: { userId },
-    include: [{ model: Product }],
+    where: {
+      userId,
+    },
   })
-    .then((userOrderHistory) => {
-      res.status(200).json(userOrderHistory);
+    .then((histories) => {
+      const promises = histories.map((history) => {
+        return Products.findOne({
+          where: {
+            id: history.productId,
+          },
+        }).then((product) => {
+          return {
+            ...history.toJSON(),
+            product,
+          };
+        });
+      });
+
+      return Promise.all(promises);
+    })
+    .then((historiesWithData) => {
+      res.status(200).json(historiesWithData);
     })
     .catch((error) => {
-      console.error("Error al obtener el historial de órdenes:", error);
+      console.error("Error al obtener las órdenes con productos:", error);
       res
         .status(500)
-        .json({ message: "Error al obtener el historial de órdenes" });
+        .json({ message: "Error al obtener las órdenes con productos" });
     });
 });
 
