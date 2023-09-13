@@ -4,6 +4,7 @@ const User = require("../models/Users");
 const { generateToken } = require("../config/tokens");
 const { validateUser } = require("../middlewares/auth");
 const Orders = require("../models/Orders");
+const History = require("../models/History");
 
 router.post("/register", (req, res, next) => {
   const { email, last_name, name, password, address, snippet } = req.body;
@@ -79,8 +80,10 @@ router.get("/userId/history", (req, res, next) => {
       res.status(200).json(userOrderHistory);
     })
     .catch((error) => {
-      console.error('Error al obtener el historial de órdenes:', error);
-      res.status(500).json({ message: 'Error al obtener el historial de órdenes' });
+      console.error("Error al obtener el historial de órdenes:", error);
+      res
+        .status(500)
+        .json({ message: "Error al obtener el historial de órdenes" });
     });
 });
 
