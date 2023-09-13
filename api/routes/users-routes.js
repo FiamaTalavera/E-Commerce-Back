@@ -4,6 +4,7 @@ const User = require("../models/Users");
 const { generateToken } = require("../config/tokens");
 const { validateUser } = require("../middlewares/auth");
 const Orders = require("../models/Orders");
+const History = require("../models/History");
 
 router.post("/register", (req, res, next) => {
   const { email, last_name, name, password, address, snippet } = req.body;
@@ -69,17 +70,21 @@ router.put("/profile", validateUser, (req, res, next) => {
 });
 
 router.get("/userId/history", (req, res, next) => {
-  const { userId } = req.params;
+  const userId = req.user.id;
 
-  Orders.findAll({
-    where: {
-      userId,
-    },
+  History.findAll({
+    where: { userId },
+    include: [{ model: Product }],
   })
-    .then((orders) => {
-      res.status(200).send(orders);
+    .then((userOrderHistory) => {
+      res.status(200).json(userOrderHistory);
     })
-    .catch(next);
+    .catch((error) => {
+      console.error("Error al obtener el historial de órdenes:", error);
+      res
+        .status(500)
+        .json({ message: "Error al obtener el historial de órdenes" });
+    });
 });
 
 module.exports = router;
