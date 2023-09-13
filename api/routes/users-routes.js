@@ -69,17 +69,21 @@ router.put("/profile", validateUser, (req, res, next) => {
 });
 
 router.get("/userId/history", (req, res, next) => {
-  const { userId } = req.params;
+  const userId = req.user.id;
 
+  // Consulta para obtener el historial de órdenes del usuario
   Orders.findAll({
-    where: {
-      userId,
-    },
+    where: { UserId: userId },
+    // Incluir otros modelos relacionados si es necesario (por ejemplo, Product)
+    include: [{ model: Product }],
   })
-    .then((orders) => {
-      res.status(200).send(orders);
+    .then((userOrderHistory) => {
+      res.status(200).json(userOrderHistory);
     })
-    .catch(next);
+    .catch((error) => {
+      console.error('Error al obtener el historial de órdenes:', error);
+      res.status(500).json({ message: 'Error al obtener el historial de órdenes' });
+    });
 });
 
 module.exports = router;
