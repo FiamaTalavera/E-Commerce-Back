@@ -1,4 +1,20 @@
+const Category = require("../models/Category");
 const Product = require("../models/Products");
+
+const fakeDataCategories = [
+  {
+    name: "salado",
+  },
+  {
+    name: "dulce",
+  },
+  {
+    name: "bebida",
+  },
+  {
+    name: "comida",
+  },
+];
 
 const fakeData = [
   {
@@ -8,6 +24,7 @@ const fakeData = [
     imageURL:
       "https://i.pinimg.com/564x/02/57/e7/0257e7ceb181fb5118f914c16563f784.jpg",
     stock: 6,
+    categoryId: 1,
   },
   {
     name: "Tostón de palta",
@@ -78,6 +95,7 @@ const fakeData = [
 ];
 
 const seed = () => {
+  Category.bulkCreate(fakeDataCategories);
   Product.bulkCreate(fakeData);
 };
 
