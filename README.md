@@ -62,10 +62,12 @@ git clone https://github.com/FiamaTalavera/E-Commerce-Back.git
 
 **Iniciar la Aplicación:**
 
-4. Inicia los directorios ejecutando el siguiente comando:
+4. No olvides crear un archivo .env, te dejamos un ejemplo en el repositorio.
+
+5. Inicia los directorios ejecutando el siguiente comando:
 ```npm start```
 
-5. Iniciar la base de datos ejecutando el siguiente comando:
+6. Iniciar la base de datos ejecutando el siguiente comando:
 ```npm run seed```
 
 
