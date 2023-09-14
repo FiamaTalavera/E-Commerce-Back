@@ -3,7 +3,9 @@ const router = express.Router();
 const Product = require('../models/Products');
 const Category = require('../models/Category');
 
-router.delete('/:productId', (req, res, next) => {
+// ruta eliminar un producto
+
+router.delete('/products/:productId', (req, res, next) => {
     const { productId } = req.params;
 
     Product.findByPk(productId)
@@ -22,6 +24,8 @@ router.delete('/:productId', (req, res, next) => {
         .catch(next);
 });
 
+// ruta crear categoria
+
 router.post('/categories', (req, res, next) => {
     const { name } = req.body;
 
@@ -31,6 +35,8 @@ router.post('/categories', (req, res, next) => {
         })
         .catch(next);
 });
+
+// ruta eliminar categoria
 
 router.delete('/categories/:categoryId', (req, res, next) => {
     const { categoryId } = req.params;
@@ -48,8 +54,10 @@ router.delete('/categories/:categoryId', (req, res, next) => {
         .catch(next);
 });
 
-router.post('/addProduct', (req, res, next) => {
-    const { name, description, price, imageURL, stock } = req.body;
+// ruta crear producto
+
+router.post('/products/addProduct', (req, res, next) => {
+    const { name, description, price, imageURL, stock, categoryId } = req.body;
     Product.create({
         name,
         description,
@@ -57,9 +65,13 @@ router.post('/addProduct', (req, res, next) => {
         imageURL,
         stock,
     })
-        .then((newProduct) => res.status(201).send(newProduct))
+        .then((newProduct) => {
+            newProduct.setCategory(categoryId)
+            res.status(201).send(newProduct)})
         .catch(next);
 });
+
+// ruta modificar categoria
 
 router.put('/categories/:categoryId', (req, res, next) => {
     const { categoryId } = req.params;
@@ -79,6 +91,8 @@ router.put('/categories/:categoryId', (req, res, next) => {
   .catch(next)
 });
 
+// ruta ver todas las categorias
+
 router.get("/categories", (req, res, next) => {
 
   Category.findAll()
@@ -89,5 +103,48 @@ router.get("/categories", (req, res, next) => {
     })
     .catch(next);
 });
+
+// ruta para modificar producto
+
+router.put("/products/modify/:id", (req, res, next) => {
+    const { id } = req.params;
+    const { name, description, price, imageURL, stock, categoryId } = req.body;
+    // console.log("req.body ---> ", req.body)
+
+    Product.update(
+      {
+        name,
+        description,
+        price,
+        imageURL,
+        stock,
+        categoryId
+      },
+      {
+        where: { id },
+        returning: true,
+      }
+    )
+      .then(([numChanges, [updatedProduct]]) => {
+        if (numChanges === 0) {
+          return res.status(404).json({ message: "Product Not Found" });
+        }
+        // console.log("updatedProduct ---> ",updatedProduct)
+        res.status(200).json(updatedProduct);
+      })
+      .catch(next);
+  });
+
+  // ruta ver todos los productos 
+
+  router.get("/products", (req, res, next) => {
+    Product.findAll()
+      .then((products) => {
+        res.status(200).json(products);
+      })
+      .catch(next);
+  });
+
+
 
 module.exports = router;
