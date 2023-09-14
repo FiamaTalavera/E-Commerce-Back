@@ -11,9 +11,6 @@ const fakeDataCategories = [
   {
     name: "bebida",
   },
-  {
-    name: "comida",
-  },
 ];
 
 const fakeData = [
@@ -94,9 +91,9 @@ const fakeData = [
   },
 ];
 
-const seed = () => {
-  Category.bulkCreate(fakeDataCategories);
-  Product.bulkCreate(fakeData);
+const seed = async () => {
+  await Category.bulkCreate(fakeDataCategories);
+  await Product.bulkCreate(fakeData);
 };
 
 seed();
