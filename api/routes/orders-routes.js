@@ -101,7 +101,6 @@ router.put('/updateQuantity/:orderId', (req, res, next) => {
 
 router.post('/checkout', validateUser, (req, res, next) => {
     const { userId } = req.user;
-    console.log("req.user ---> ", req.user.email)
     const orderNumber = generateOrderNumber();
 
     Order.findAll({ where: { userId } }).then((order) => {

@@ -58,7 +58,6 @@ router.post("/", (req, res, next) => {
     stock,
   })
     .then((newProduct) => {
-      // console.log("newProduct --> ", newProduct)
       newProduct.setCategory(categoryId)
       res.status(201).send(newProduct)})
     .catch(next);

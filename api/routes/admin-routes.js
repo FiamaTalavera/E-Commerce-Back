@@ -110,7 +110,6 @@ router.get("/categories", (req, res, next) => {
 router.put("/products/modify/:id", (req, res, next) => {
     const { id } = req.params;
     const { name, description, price, imageURL, stock, categoryId } = req.body;
-    // console.log("req.body ---> ", req.body)
 
     Product.update(
       {
@@ -130,7 +129,6 @@ router.put("/products/modify/:id", (req, res, next) => {
         if (numChanges === 0) {
           return res.status(404).json({ message: "Product Not Found" });
         }
-        // console.log("updatedProduct ---> ",updatedProduct)
         res.status(200).json(updatedProduct);
       })
       .catch(next);
