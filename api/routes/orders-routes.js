@@ -7,6 +7,7 @@ const { generateOrderNumber } = require('../utils/functions');
 const History = require('../models/History');
 
 const nodemailer = require('nodemailer');
+const { where } = require('sequelize');
 
 // config nodemailer / email
 
@@ -138,5 +139,22 @@ router.post('/checkout', validateUser, (req, res, next) => {
 
     return res.status(200).json({ message: 'Compra completada' });
 });
+
+router.delete('/clearCart/:userId', (req, res, next) => {
+    const { userId } = req.params
+    
+    Order.destroy({
+        where:
+            { userId: userId }
+    })
+        .then((order) => {
+        if (!order) {
+            return res.status(404).json({ message: 'Orden no encontrada' });
+        }
+            
+            return res.status(200).json({message: 'Chango vaciado exitosamente'})
+        })
+    .catch((next))
+})
 
 module.exports = router;
