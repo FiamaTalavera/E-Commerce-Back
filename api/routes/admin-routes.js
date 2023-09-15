@@ -3,12 +3,10 @@ const router = express.Router();
 const Product = require('../models/Products');
 const Category = require('../models/Category');
 
-const { validateUser } = require("../middlewares/auth");
-const { validateAdmin } = require("../middlewares/adminAuth");
 
 // ruta eliminar un producto
 
-router.delete('/products/:productId', validateUser, validateAdmin, (req, res, next) => {
+router.delete('/products/:productId', (req, res, next) => {
     const { productId } = req.params;
 
     Product.findByPk(productId)
@@ -29,7 +27,7 @@ router.delete('/products/:productId', validateUser, validateAdmin, (req, res, ne
 
 // ruta crear categoria
 
-router.post('/categories', validateUser, validateAdmin, (req, res, next) => {
+router.post('/categories', (req, res, next) => {
     const { name } = req.body;
 
     Category.create({ name: name })
@@ -41,7 +39,7 @@ router.post('/categories', validateUser, validateAdmin, (req, res, next) => {
 
 // ruta eliminar categoria
 
-router.delete('/categories/:categoryId', validateUser, validateAdmin, (req, res, next) => {
+router.delete('/categories/:categoryId', (req, res, next) => {
     const { categoryId } = req.params;
 
     Category.findByPk(categoryId)
@@ -59,7 +57,7 @@ router.delete('/categories/:categoryId', validateUser, validateAdmin, (req, res,
 
 // ruta crear producto
 
-router.post('/products/addProduct', validateUser, validateAdmin, (req, res, next) => {
+router.post('/products/addProduct', (req, res, next) => {
     const { name, description, price, imageURL, stock, categoryId } = req.body;
     Product.create({
         name,
@@ -76,7 +74,7 @@ router.post('/products/addProduct', validateUser, validateAdmin, (req, res, next
 
 // ruta modificar categoria
 
-router.put('/categories/:categoryId', validateUser, validateAdmin, (req, res, next) => {
+router.put('/categories/:categoryId', (req, res, next) => {
     const { categoryId } = req.params;
     const { name } = req.body;
 
@@ -96,7 +94,7 @@ router.put('/categories/:categoryId', validateUser, validateAdmin, (req, res, ne
 
 // ruta ver todas las categorias
 
-router.get("/categories", validateUser, validateAdmin, (req, res, next) => {
+router.get("/categories", (req, res, next) => {
 
   Category.findAll()
     .then((categories) => {
@@ -109,7 +107,7 @@ router.get("/categories", validateUser, validateAdmin, (req, res, next) => {
 
 // ruta para modificar producto
 
-router.put("/products/modify/:id", validateUser, validateAdmin, (req, res, next) => {
+router.put("/products/modify/:id", (req, res, next) => {
     const { id } = req.params;
     const { name, description, price, imageURL, stock, categoryId } = req.body;
     // console.log("req.body ---> ", req.body)
@@ -140,7 +138,7 @@ router.put("/products/modify/:id", validateUser, validateAdmin, (req, res, next)
 
   // ruta ver todos los productos 
 
-  router.get("/products", validateUser, validateAdmin, (req, res, next) => {
+  router.get("/products", (req, res, next) => {
     Product.findAll()
       .then((products) => {
         res.status(200).json(products);
