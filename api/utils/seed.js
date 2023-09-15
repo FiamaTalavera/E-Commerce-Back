@@ -24,7 +24,7 @@ const fakeData = [
     categoryId: 1,
   },
   {
-    name: "Tostón de palta",
+    name: "Toston de palta",
     description: "Tostada de pan de campo con palta, huevo y especias",
     price: 500,
     imageURL:
@@ -66,7 +66,7 @@ const fakeData = [
     stock: 12,
   },
   {
-    name: "Café",
+    name: "Cafe",
     description: "Clásico cortado",
     price: 120,
     imageURL:
