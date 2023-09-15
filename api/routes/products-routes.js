@@ -4,6 +4,7 @@ const { Op } = require("sequelize");
 const Product = require("../models/Products");
 const Order = require("../models/Orders");
 const { validateUser } = require("../middlewares/auth");
+const Category = require("../models/Category")
 
 router.put("/:id", (req, res, next) => {
   const { id } = req.params;
@@ -174,6 +175,18 @@ router.get("/category/:categoryId", async (req, res) => {
     console.error("Error en la consulta de productos por categoría:", error);
     res.status(500).json({ error: "Hubo un error al buscar los productos." });
   }
+});
+
+//ruta para obtener todas las categorías
+router.get("/category", (req, res, next) => {
+
+  Category.findAll()
+    .then((categories) => {
+      res
+        .status(200)
+        .send(categories);
+    })
+    .catch(next);
 });
 
 module.exports = router;
