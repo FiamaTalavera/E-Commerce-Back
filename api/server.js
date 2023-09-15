@@ -3,9 +3,9 @@ const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const db = require("./api/config/db");
-const models = require("./api/models/index");
-const routes = require("./api/routes");
+const db = require("./config/db");
+const models = require("./models/index");
+const routes = require("./routes");
 
 app.use(express.json());
 
